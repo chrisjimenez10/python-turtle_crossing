@@ -9,7 +9,8 @@ screen.setup(width=600, height=600)
 screen.tracer(0)
 
 player = Player()
-car = CarManager()
+car_manager = CarManager()
+score_board = Scoreboard()
 
 
 screen.listen()
@@ -22,12 +23,20 @@ while game_is_on:
     time.sleep(0.1)
     screen.update()
 
-    car.generate()
-    car.move()
+    car_manager.create_car()
+    car_manager.move()
 
-    # Reset player position for next round
+    # Detect collision with car
+    for car in car_manager.all_cars:
+        if car.distance(player) < 20:
+            score_board.game_over()
+            game_is_on = False
+
+
+    # Successfull player crossing: Reset player position for next round
     if player.ycor() >= 280:
         player.next_round()
+        car_manager.level_up()
 
 
 

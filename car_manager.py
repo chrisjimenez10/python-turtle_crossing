@@ -11,13 +11,14 @@ LENGTH = 2
 class CarManager:
     def __init__(self):
         self.all_cars = []
+        self.car_speed = STARTING_MOVE_DISTANCE
 
     def move(self):
         for car in self.all_cars:
-            new_x = car.xcor() - STARTING_MOVE_DISTANCE
+            new_x = car.xcor() - self.car_speed
             car.goto(x=new_x, y=car.ycor())
 
-    def generate(self):
+    def create_car(self):
         # Here, we are limiting the chance of car generation in the while loop of main.py by ONLY generating a new_car IF the randomly generated number is ONE
         random_chance = random.randint(1, 6)
         if random_chance == 1:
@@ -27,3 +28,6 @@ class CarManager:
             new_car.color(random.choice(COLORS))
             new_car.goto(x=300, y=random.randint(-250, 250))
             self.all_cars.append(new_car)
+
+    def level_up(self):
+        self.car_speed += MOVE_INCREMENT
