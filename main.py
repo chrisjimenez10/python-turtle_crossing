@@ -37,6 +37,7 @@ while game_is_on:
     if player.ycor() >= 280:
         player.next_round()
         car_manager.level_up()
+        score_board.increase_level()
 
 
 
