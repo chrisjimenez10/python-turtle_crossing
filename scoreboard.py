@@ -3,7 +3,7 @@ from turtle import Turtle
 FONT = ("Courier", 24, "bold")
 FONT_SCORE = ("Courier", 12, "bold")
 ALIGNMENT = "center"
-
+SCORE_ALIGNMENT = (-290, 270)
 
 
 class Scoreboard(Turtle):
@@ -12,7 +12,7 @@ class Scoreboard(Turtle):
         self.current_level = 1
         self.hideturtle()
         self.penup()
-        self.goto(x=-290, y=270)
+        self.goto(SCORE_ALIGNMENT)
         self.update_score()
 
     def game_over(self):
@@ -27,4 +27,3 @@ class Scoreboard(Turtle):
 
     def update_score(self):
         self.write(arg=F"Level: {self.current_level}", font=FONT_SCORE)
-

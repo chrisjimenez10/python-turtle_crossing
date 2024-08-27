@@ -40,10 +40,4 @@ while game_is_on:
         score_board.increase_level()
 
 
-
-
-
-
-
-
 screen.exitonclick()
